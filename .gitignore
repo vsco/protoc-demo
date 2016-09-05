@@ -1,0 +1,6 @@
+bazel-bin
+bazel-genfiles
+bazel-out
+bazel-protoc-demo
+bazel-testlogs
+test/resources/com

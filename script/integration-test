@@ -1,0 +1,16 @@
+#!/bin/bash
+
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+mkdir -p $SCRIPT_DIR/../test/resources/com
+PROTOC="$SCRIPT_DIR/../test/resources/bin/linux/protoc"
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  PROTOC="$SCRIPT_DIR/../test/resources/bin/macosx/protoc"
+fi
+
+pushd $SCRIPT_DIR/.. && \
+bazel build main:protoc-gen-demo && \
+bazel test test:test && \
+popd && \
+$PROTOC --proto_path=$SCRIPT_DIR/../test/resources --java_out=$SCRIPT_DIR/../test/resources --plugin=protoc-gen-demo=$SCRIPT_DIR/../bazel-bin/main/protoc-gen-demo --demo_out=$SCRIPT_DIR/../test/resources $SCRIPT_DIR/../test/resources/event.proto && \
+javac -cp $SCRIPT_DIR/../test/resources/protobuf-java-3.0.0.jar $(find $SCRIPT_DIR/../test/resources/com/* | grep .java) && \
+echo "Tests complete.";

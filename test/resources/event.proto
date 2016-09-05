@@ -1,0 +1,98 @@
+syntax = "proto3";
+
+package events;
+
+option java_multiple_files = true;
+option java_generic_services = false;
+option java_package = "com.vsco.proto.events";
+option java_outer_classname = "ProtoEvent";
+
+message Event{
+  // unique event identifier
+  string eventId = 1;
+  
+  message EventBody {
+    oneof body{
+      BodyA bodyA = 1;
+      BodyB bodyB = 2;
+      BodyC bodyC = 3;
+      BodyD bodyD = 4;
+      BodyE bodyE = 5;
+      BodyF bodyF = 6;
+      BodyG bodyG = 7;
+      BodyH bodyH = 8;
+      BodyI bodyI = 9;
+      BodyJ bodyJ = 10;
+      BodyK bodyK = 11;
+      BodyL bodyL = 12;
+      BodyM bodyM = 13;
+      BodyN bodyN = 14;
+      BodyO bodyO = 15;
+      BodyP bodyP = 16;
+    }
+  }
+
+  message BodyA {
+    int32 data = 1;
+  }
+
+  message BodyB {
+    sint32 data = 1;
+  }
+
+  message BodyC {
+    sfixed32 data = 1;
+  }
+
+  message BodyD {
+    int64 data = 1;
+  }
+
+  message BodyE {
+    sint64 data = 1;
+  }
+
+  message BodyF {
+    sfixed64 data = 1;
+  }
+
+  message BodyG {
+    bool data = 1;
+  }
+
+  message BodyH {
+    float data = 1;
+  }
+
+  message BodyI {
+    double data = 1;
+  }
+
+  message BodyJ {
+    uint32 data = 1;
+  }
+
+  message BodyK {
+    uint32 data = 1;
+  }
+
+  message BodyL {
+    fixed32 data = 1;
+  }
+
+  message BodyM {
+    uint64 data = 1;
+  }
+
+  message BodyN {
+    fixed64 data = 1;
+  }
+
+  message BodyO {
+    string data = 1;
+  }
+
+  message BodyP {
+    bytes data = 1;
+  }
+}
